@@ -12,6 +12,8 @@ namespace HandTrackingCore
     /// </summary>
     public class UDPReceiver : IDisposable
     {
+        private const int THREAD_JOIN_TIMEOUT_MS = 1000;
+        
         private Thread receiveThread;
         private UdpClient client;
         private bool isReceiving;
@@ -64,7 +66,7 @@ namespace HandTrackingCore
             
             if (receiveThread != null && receiveThread.IsAlive)
             {
-                receiveThread.Join(1000);
+                receiveThread.Join(THREAD_JOIN_TIMEOUT_MS);
                 // Note: Thread.Abort() is obsolete in modern .NET
                 // The thread will terminate when the loop exits after setting isReceiving = false
             }

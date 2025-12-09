@@ -93,7 +93,8 @@ namespace HandTrackingCore
                 // Split by comma
                 string[] points = data.Split(',');
 
-                // We expect 21 points * 3 coordinates = 63 values
+                // We expect exactly 21 points * 3 coordinates = 63 values
+                // Using >= allows for extra data that will be ignored
                 if (points.Length < HandTrackingData.NUM_HAND_POINTS * 3)
                     return null;
 

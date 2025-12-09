@@ -44,7 +44,9 @@ public class UnityHandRenderer : MonoBehaviour, I3DRenderer
             return;
 
         // Transform coordinates from hand tracking space to Unity space
-        // Original formula: x = 7 - x/100, y = y/100, z = z/100
+        // Original formula from HandTracking.cs: x = 7 - x/100, y = y/100, z = z/100
+        // X-axis is inverted (xOffset - x) to mirror the hand tracking coordinate system
+        // This matches the camera's view where the hand appears mirrored
         float x = xOffset - position.X / coordinateScale;
         float y = position.Y / coordinateScale;
         float z = position.Z / coordinateScale;
