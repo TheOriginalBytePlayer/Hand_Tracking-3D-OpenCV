@@ -65,8 +65,8 @@ namespace HandTrackingCore
             if (receiveThread != null && receiveThread.IsAlive)
             {
                 receiveThread.Join(1000);
-                if (receiveThread.IsAlive)
-                    receiveThread.Abort();
+                // Note: Thread.Abort() is obsolete in modern .NET
+                // The thread will terminate when the loop exits after setting isReceiving = false
             }
         }
 
